@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::middleware('auth')->group(function () {
+    Route::get('/tweets', 'TweetsController@index')->middleware('auth')->name('home');
+    Route::post('/tweets', 'TweetsController@store')->middleware('auth');
+});
 Auth::routes();
-
-
-Route::get('/home', 'TweetsController@index')->middleware('auth')->name('home');
-Route::post('/tweets', 'TweetsController@store')->middleware('auth');
