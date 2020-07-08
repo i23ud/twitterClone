@@ -5,21 +5,25 @@
             name="body"
             class="w-full"
             placeholder="what is your mind"
+            autofocus
             required
-        ></textarea>
+        >
+        </textarea>
         @error('body')
         <span>{{ $message }}</span>
         @enderror
         <hr class="my-4">
-        <footer class="flex justify-between">
+        <footer class="flex justify-between items-center">
             <img
                 src="{{ auth()->user()->avatar}}"
                 alt="your profile image"
                 class="rounded-full mr-2"
+                width="50"
+                height="50"
             >
             <button
                 type="submit"
-                class="bg-blue-500 rounded-lg shadow p-2 text-white"
+                class="bg-blue-500 rounded-lg shadow px-10 h-10 text-sm text-white hover:bg-blue-600"
             >
                 Tweet
             </button>

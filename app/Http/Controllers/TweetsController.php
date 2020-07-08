@@ -10,7 +10,7 @@ class TweetsController extends Controller
     public function index()
     {
         $tweets = auth()->user()->timeline();
-        return view('home', compact('tweets'));
+        return view('tweets.index', compact('tweets'));
     }
 
     public function create()

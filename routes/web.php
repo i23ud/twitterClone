@@ -17,7 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/tweets', 'TweetsController@index')->middleware('auth')->name('home');
-    Route::post('/tweets', 'TweetsController@store')->middleware('auth');
+    Route::get('/tweets', 'TweetsController@index')->name('home');
+    Route::post('/tweets', 'TweetsController@store');
+    Route::get('/profiles/{user:username}', 'ProfileController@show')->name('profile');
+    Route::post('/profiles/{user:username}/follow', 'FollowsController@store');
+    Route::get('/profiles/{user:username}/edit', 'ProfileController@edit');
+    Route::patch('/profiles/{user:username}', 'ProfileController@update')->middleware('can:edit,user');
+    Route::get('/explore', 'ExploreController');
 });
 Auth::routes();

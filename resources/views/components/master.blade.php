@@ -23,14 +23,10 @@
 <div id="app">
     <section class="px-8 py-4 mb-6">
         <header class="container mx-auto">
-           <span class="material-icons">coronavirus</span>
+            <span class="material-icons">coronavirus</span>
         </header>
     </section>
-    <section class="px-8">
-        <main class="mx-auto container">
-            @yield('content')
-        </main>
-    </section>
+    {{ $slot }}
 </div>
 </body>
 </html>

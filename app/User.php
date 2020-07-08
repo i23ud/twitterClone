@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, followable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'avatar'
     ];
 
     /**
@@ -41,26 +41,26 @@ class User extends Authenticatable
     {
         $friends = $this->follows()->pluck('id');
         $friends->push($this->id);
-        return Tweet::query()->whereIn('user_id', $friends)->latest()->get();
+        return Tweet::query()->whereIn('user_id', $friends)->latest()->paginate(50);
     }
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute($value)
     {
-        return "https://i.pravatar.cc/40?u=" . $this->email;
+        return asset($value ?: '/images/default-avatar.png');
     }
 
-    public function follow(User $user)
+    public function setPasswordAttribute($value)
     {
-        return $this->follows()->save($user);
+        $this->attributes['password'] = bcrypt($value);
     }
 
-    public function follows()
+    public function likes()
     {
-        return $this->belongsToMany('App\User', 'follows', 'user_id', 'following_user_id');
+        return $this->hasMany('App\Like');
     }
 
     public function tweets()
     {
-        return $this->hasMany('App\Tweet');
+        return $this->hasMany('App\Tweet')->latest();
     }
 }
