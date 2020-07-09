@@ -38,4 +38,9 @@ trait followable
     {
         return $this->belongsToMany('App\User', 'follows', 'user_id', 'following_user_id');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany('App\User', 'follows', 'following_user_id','user_id');
+    }
 }
