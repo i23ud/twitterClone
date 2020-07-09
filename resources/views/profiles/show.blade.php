@@ -1,4 +1,5 @@
 <x-app>
+{{--    {{ dd($user->followers) }}--}}
     <header class="mb-6 relative">
         <div class="relative ">
             <img
