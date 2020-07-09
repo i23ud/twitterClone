@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- icons -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
@@ -23,7 +25,7 @@
 <div id="app">
     <section class="px-8 py-4 mb-6">
         <header class="container mx-auto">
-            <span class="material-icons">coronavirus</span>
+            <i class="fa fa-book" aria-hidden="true"></i>
         </header>
     </section>
     {{ $slot }}

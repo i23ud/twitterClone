@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         return view('profiles.show', [
             'user' => $user,
-            'tweets' => $user->tweets()->paginate(50),
+            'tweets' => $user->tweets()->withLikes()->paginate(50),
         ]);
     }
 
@@ -53,7 +53,7 @@ class ProfileController extends Controller
             $attributes['avatar'] = \request('avatar')->store('avatars');
         }
         $user->update($attributes);
-        return redirect()->back();
+        return redirect("/profiles/$user->username");
     }
 
     public function destroy(Profile $profile)

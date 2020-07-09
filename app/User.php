@@ -41,7 +41,7 @@ class User extends Authenticatable
     {
         $friends = $this->follows()->pluck('id');
         $friends->push($this->id);
-        return Tweet::query()->whereIn('user_id', $friends)->latest()->paginate(50);
+        return Tweet::query()->whereIn('user_id', $friends)->withLikes()->latest()->paginate(50);
     }
 
     public function getAvatarAttribute($value)
