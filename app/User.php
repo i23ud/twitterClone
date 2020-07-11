@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return asset($value ?: '/images/default-avatar.png');
+        return asset($value ?: '/images/default-image.png');
     }
 
     public function setPasswordAttribute($value)

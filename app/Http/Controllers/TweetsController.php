@@ -9,27 +9,20 @@ class TweetsController extends Controller
 {
     public function index()
     {
-//        $tweets = auth()->user()->timeline();
         return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
     {
         $attributes = $request->validate(
             [
-                'body' => 'required|max:255'
+                'body' => 'required|max:280'
             ]
         );
         auth()->user()->tweets()->create($attributes);
-
-        return redirect(route('home'));
+        return redirect(route('home'))->with('message', 'Your Post was sent.');
     }
 
     public function show(Tweet $tweet)

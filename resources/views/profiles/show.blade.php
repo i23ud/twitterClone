@@ -1,10 +1,10 @@
 <x-app>
 {{--    {{ dd($user->followers) }}--}}
     <header class="mb-6 relative">
-        <div class="relative ">
+        <div class="relative">
             <img
-                src="/images/banner.jpg"
-                alt=""
+                src="/images/pBanner.jpg"
+                alt="Your Profile banner"
                 class="rounded-lg mb-2"
             >
             <img

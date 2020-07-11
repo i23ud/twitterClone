@@ -12,7 +12,7 @@
             </label>
             <div class="flex">
                 <input
-                    class="border border-gray-400 p-2 w-full"
+                    class="border border-gray-400 rounded-lg 400 rounded-lg p-2 w-full"
                     type="file"
                     name="avatar"
                     id="avatar"
@@ -21,6 +21,7 @@
                 <img src="{{ $user->avatar }}"
                      alt="Your rofile image"
                      width="40"
+                     class="rounded-full ml-2"
                 >
             </div>
             @error('avatar')
@@ -36,7 +37,7 @@
                 Name
             </label>
             <input
-                class="border border-gray-400 p-2 w-full"
+                class="border border-gray-400 rounded-lg 400 p-2 w-full"
                 type="text"
                 name="name"
                 id="name"
@@ -56,7 +57,7 @@
                 Username
             </label>
             <input
-                class="border border-gray-400 p-2 w-full"
+                class="border border-gray-400 rounded-lg 400 p-2 w-full"
                 type="text"
                 name="username"
                 id="username"
@@ -76,7 +77,7 @@
                 E-maill
             </label>
             <input
-                class="border border-gray-400 p-2 w-full"
+                class="border border-gray-400 rounded-lg 400 p-2 w-full"
                 type="email"
                 name="email"
                 id="email"
@@ -97,7 +98,7 @@
                 Password
             </label>
             <input
-                class="border border-gray-400 p-2 w-full"
+                class="border border-gray-400 rounded-lg 400 p-2 w-full"
                 type="password"
                 name="password"
                 id="password"
@@ -116,7 +117,7 @@
                 Password Confirmation
             </label>
             <input
-                class="border border-gray-400 p-2 w-full"
+                class="border border-gray-400 rounded-lg 400 p-2 w-full"
                 type="password"
                 name="password_confirmation"
                 id="password_confirmation"
@@ -127,7 +128,7 @@
             @enderror
         </div>
         <div class="">
-            <button class="py-3 px-4 bg-blue-500 text-white rounded-lg mr-4">Save</button>
+            <button class="py-3 px-4 bg-teal-500 text-white rounded-lg mr-4 hover:bg-teal-600">Save</button>
             <a href="/profiles/{{ $user->username }}" class="hover:underline">Cancel</a>
         </div>
     </form>

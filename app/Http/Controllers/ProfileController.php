@@ -6,6 +6,7 @@ use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -50,9 +51,16 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         if (request('avatar')) {
-            $attributes['avatar'] = \request('avatar')->store('avatars');
+            $imagePath = request('avatar')->store('avatars');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300);
+            $image->save();
+            $imageArray = ['avatar' => $imagePath];
         }
-        $user->update($attributes);
+        $user->update(array_merge(
+            $attributes,
+            $imageArray ?? []
+        ));
         return redirect("/profiles/$user->username");
     }
 

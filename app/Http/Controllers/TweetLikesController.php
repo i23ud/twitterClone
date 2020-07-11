@@ -18,4 +18,11 @@ class TweetLikesController extends Controller
         $tweet->dislike(auth()->user());
         return back();
     }
+
+    public function destroyLike(Tweet $tweet)
+    {
+        $tweet->unlike(auth()->user());
+        return back();
+    }
+
 }

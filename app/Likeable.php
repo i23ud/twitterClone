@@ -44,6 +44,11 @@ trait Likeable
             ->count();
     }
 
+    public function unlike(?User $user = null)
+    {
+        $this->likes->where('user_id', $user->id ?? auth()->id())->first()->delete();
+    }
+
     public function likes()
     {
         return $this->hasMany(Like::class);

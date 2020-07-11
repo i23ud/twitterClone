@@ -1,6 +1,11 @@
 <div class="flex">
-    <form action="/tweets/{{ $tweet->id }}/like" method="POST">
+    <form
+        action="{{ $tweet->isLikedBy(auth()->user()) ? '/tweets/' . $tweet->id . '/dislike' : '/tweets/' . $tweet->id . '/like' }}"
+        method="POST">
         @csrf
+        @if($tweet->isLikedBy(auth()->user()))
+            @method('DELETE')
+        @endif
         <div
             class="flex items-center mr-4 {{ $tweet->isLikedBy(auth()->user()) ? 'text-blue-500' : 'text-gray-500' }}">
             <i class="fa fa-thumbs-up fa-lg fill-current mr-1"></i>
@@ -8,7 +13,9 @@
         </div>
     </form>
 
-    <form action="/tweets/{{ $tweet->id }}/like" method="POST">
+    <form
+        action="{{ $tweet->isDislikedBy(auth()->user()) ? '/tweets/' . $tweet->id . '/dislike' : '/tweets/' . $tweet->id . '/like' }}"
+        method="POST">
         @csrf
         @method('DELETE')
         <div

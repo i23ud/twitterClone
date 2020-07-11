@@ -1,11 +1,10 @@
 <x-master>
-    <div class="container mx-auto flex justify-center">
+    <div class="mx-auto flex justify-center">
         <div class="px-12 py-8 bg-gray-300 rounded-lg">
-            <div class="col-md-8">
-                <div class="font-bold">{{ __('Login') }}</div>
+            <div class="">
+                <div class="font-bold mb-6">Login</div>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <div class="mb-6">
                         <label
                             for="email"
@@ -56,15 +55,15 @@
                                 id="remember"
                                 {{ old('remember') ? 'checked' : '' }}
                             >
-                            <label class="text-xs text-gray-700 font-bold uppercase" for="remember">
+                            <label class="text-xs text-gray-700 font-bold uppercase hover:underline" for="remember">
                                 {{ __('Remember Me') }}
                             </label>
                         </div>
                     </div>
                     <div class="mb-6">
-                        <button class="py-3 px-4 bg-blue-400 text-white rounded-lg hover:bg-blue-500 mr-4">Login
+                        <button class="py-3 px-4 bg-teal-400 text-white rounded-lg hover:bg-teal-500 mr-4">
+                            Login
                         </button>
-
 
                         @if (Route::has('password.request'))
                             <a class="text-xs text-gray-700" href="{{ route('password.request') }}">

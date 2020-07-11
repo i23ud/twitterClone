@@ -25,7 +25,9 @@
 <div id="app">
     <section class="px-8 py-4 mb-6">
         <header class="container mx-auto">
-            <i class="fa fa-book" aria-hidden="true"></i>
+            <a class="flex items-center" href="/tweets">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <p class="ml-2">Thoughts</p></a>
         </header>
     </section>
     {{ $slot }}

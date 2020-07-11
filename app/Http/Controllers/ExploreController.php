@@ -10,7 +10,7 @@ class ExploreController extends Controller
     public function __invoke()
     {
         return view('explore.index',[
-            'users' => User::paginate(50)
+            'users' => User::where('id', '!=', auth()->id())->paginate(50)
         ]);
     }
 }
