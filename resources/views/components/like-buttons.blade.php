@@ -6,10 +6,11 @@
         @if($tweet->isLikedBy(auth()->user()))
             @method('DELETE')
         @endif
-        <div
-            class="flex items-center mr-4 {{ $tweet->isLikedBy(auth()->user()) ? 'text-blue-500' : 'text-gray-500' }}">
-            <i class="fa fa-thumbs-up fa-lg fill-current mr-1"></i>
-            <button type="submit" class="text-xs">{{ $tweet->likes ?: 0 }}</button>
+        <div class="flex items-center mr-4 {{ $tweet->isLikedBy(auth()->user()) ? 'text-teal-500' : 'text-gray-500' }}">
+            <button type="submit">
+                <i class="fa fa-thumbs-up fa-lg fill-current"></i>
+                <span class="text-xs">{{ $tweet->likes ?: 0 }}</span>
+            </button>
         </div>
     </form>
 
@@ -19,9 +20,11 @@
         @csrf
         @method('DELETE')
         <div
-            class="flex items-center {{ $tweet->isDislikedBy(auth()->user()) ? 'text-blue-500' : 'text-gray-500'}}">
-            <i class="fa fa-thumbs-down fa-lg fill-current mr-1"></i>
-            <button type="submit" class="text-xs">{{ $tweet->dislikes ?: 0 }}</button>
+            class="flex items-center {{ $tweet->isDislikedBy(auth()->user()) ? 'text-teal-500' : 'text-gray-500'}}">
+            <button type="submit">
+            <i class="fa fa-thumbs-down fa-lg fill-current"></i>
+                <span class="text-xs">{{ $tweet->dislikes ?: 0 }}</span>
+            </button>
         </div>
     </form>
 </div>

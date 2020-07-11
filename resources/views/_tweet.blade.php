@@ -13,10 +13,16 @@
 
 
     <div>
-        <h5 class="font-bold mb-4"><a href="{{ route('profile', $tweet->user) }}">{{ $tweet->user->name }}</a></h5>
-        <p class="text-sm mb-3">
+        <a href="{{ route('profile', $tweet->user) }}">
+            <div class="flex items-baseline">
+                <h5 class="font-bold mr-2">{{ $tweet->user->name }}</h5>
+                <span class="text-gray-700 mb-2">{{ "@{$tweet->user->username}" }}</span>
+            </div>
+        </a>
+        <p class="text-base mb-1">
             {{ $tweet->body }}
         </p>
+        <div class="text-gray-700 mb-3 text-sm">{{ $tweet->created_at->diffForHumans() }}</div>
         <x-like-buttons :tweet="$tweet"/>
     </div>
 </div>

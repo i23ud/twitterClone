@@ -1,9 +1,8 @@
 <x-app>
-{{--    {{ dd($user->followers) }}--}}
     <header class="mb-6 relative">
         <div class="relative">
             <img
-                src="/images/pBanner.jpg"
+                src="/images/banner.jpg"
                 alt="Your Profile banner"
                 class="rounded-lg mb-2"
             >
@@ -16,9 +15,14 @@
         </div>
         <div class="flex justify-between items-center mb-6">
             <div style="max-width: 270px">
-                <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
-                <p class="text-sm">Joined in {{ $user->created_at->diffForHumans() }}</p>
+                <h2 class="font-semibold text-2xl mb-0">{{ $user->name }}</h2>
+                <p class="text-sm mb-2">Joined in {{ $user->created_at->diffForHumans() }}</p>
+                <div class="flex items-center justify-around text-sm">
+                    <p class="">Following {{ $user->follows()->count()}}</p>
+                    <p class="">followers {{ $user->followers()->count()}}</p>
+                </div>
             </div>
+
             <div class="flex items-center">
                 @can('edit', $user)
                     <a href="/profiles/{{ $user->username }}/edit"
