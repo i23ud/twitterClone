@@ -1,16 +1,19 @@
 <x-app>
     <header class="mb-6 relative">
         <div class="relative">
+
             <img
-                src="/images/banner.jpg"
+                src="{{ $user->banner }}"
                 alt="Your Profile banner"
                 class="rounded-lg mb-2"
+                loading="lazy"
             >
             <img
-                src="{{ $user->avatar}}"
+                src="{{ $user->avatar }}"
                 alt="profile image"
                 class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
                 style="width: 150px; left: 50%"
+                loading="lazy"
             >
         </div>
         <div class="flex justify-between items-center mb-6">
@@ -19,7 +22,7 @@
                 <p class="text-sm mb-2">Joined in {{ $user->created_at->diffForHumans() }}</p>
                 <div class="flex items-center justify-around text-sm">
                     <p class="">Following {{ $user->follows()->count()}}</p>
-                    <p class="">followers {{ $user->followers()->count()}}</p>
+                    <p class="">Followers {{ $user->followers()->count()}}</p>
                 </div>
             </div>
 
@@ -36,8 +39,7 @@
         </div>
 
         <p class="text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Pellentesque habitant morbi tristique senectus et.
+            {{$user->description}}
         </p>
 
     </header>

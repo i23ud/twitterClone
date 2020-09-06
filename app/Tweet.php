@@ -10,6 +10,11 @@ class Tweet extends Model
 
     protected $guarded = [];
 
+    public function getImageAttribute($value)
+    {
+        return $value ? asset($value) : '';
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

@@ -68,6 +68,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="date_of_birth"
+                               class="block mb-2 uppercase font-bold text-xs text-gray-700">Date of birth</label>
+
+                        <div class="col-md-6">
+                            <input id="date_of_birth" type="date"
+                                   class="border border-gray-400 p-2 w-full" name="date_of_birth"
+                                   value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth">
+
+                            @error('date_of_birth')
+                            <span class="text-red-500 text-xs mt-2" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+                    </div>
 
                     <div class="mb-6">
                         <label

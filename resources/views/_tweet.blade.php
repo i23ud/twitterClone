@@ -7,22 +7,41 @@
                 class="rounded-full mr-2"
                 width="50"
                 height="50"
+                loading="lazy"
             >
         </a>
     </div>
 
 
-    <div>
-        <a href="{{ route('profile', $tweet->user) }}">
-            <div class="flex items-baseline">
-                <h5 class="font-bold mr-2">{{ $tweet->user->name }}</h5>
-                <span class="text-gray-700 mb-2">{{ "@{$tweet->user->username}" }}</span>
+    <section>
+        <div class="flex justify-between">
+            <a href="{{ route('profile', $tweet->user) }}">
+                <div class="flex items-baseline">
+                    <h5 class="font-bold ">{{ $tweet->user->name }}</h5>
+                    <span class="text-gray-700">{{ "@{$tweet->user->username}" }}</span>
+                </div>
+            </a>
+            <div class="ml-5">
+                <form action="tweets/{{ $tweet->id }}/delete" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="font-mono text-sm text-red-500 hover:text-red-700" onclick="return confirm('Are You Sure Want to Delete?')">Delete</button>
+                </form>
             </div>
-        </a>
-        <p class="text-base mb-1">
-            {{ $tweet->body }}
-        </p>
+        </div>
+        <div class="">
+            <div>
+                <p class="text-base mb-1">
+                    {{ $tweet->body }}
+                </p>
+            </div>
+            @if($tweet->image)
+                <div>
+                    <img src="{{ $tweet->image }}" alt="tweet image" loading="lazy">
+                </div>
+            @endif
+        </div>
         <div class="text-gray-700 mb-3 text-sm">{{ $tweet->created_at->diffForHumans() }}</div>
         <x-like-buttons :tweet="$tweet"/>
-    </div>
+    </section>
 </div>

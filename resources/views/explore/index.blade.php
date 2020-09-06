@@ -13,6 +13,7 @@
                         alt="{{ $user->username }}'s avatar"
                         width="50"
                         class="mr-4 rounded-full"
+                        loading="lazy"
                     >
                     <div>
                         <h4 class="font-bold">{{ '@'. $user->username }}</h4>

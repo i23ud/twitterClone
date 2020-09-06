@@ -10,21 +10,6 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
-
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function show(User $user)
     {
         return view('profiles.show', [
@@ -44,7 +29,9 @@ class ProfileController extends Controller
     public function update(User $user)
     {
         $attributes = request()->validate([
-            'avatar' => 'file',
+            'avatar' => 'image|nullable',
+            'banner' => 'image|nullable',
+            'description' => 'string|nullable|required|max:255',
             'username' => ['required', 'string', 'max:255', 'alpha_dash', Rule::unique('users')->ignore($user)],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
@@ -57,8 +44,16 @@ class ProfileController extends Controller
             $image->save();
             $imageArray = ['avatar' => $imagePath];
         }
+        if (request('banner')) {
+            $imgPath = request('banner')->store('banner');
+
+            $image = Image::make(public_path("storage/{$imgPath}"))->fit(1500, 500);
+            $image->save();
+            $bannereArray = ['banner' => $imgPath];
+        }
         $user->update(array_merge(
             $attributes,
+            $bannereArray ?? [],
             $imageArray ?? []
         ));
         return redirect("/profiles/$user->username");
